@@ -1,8 +1,18 @@
 const display = document.querySelector(".display");
 
-document.querySelector(".cleaning").addEventListener("click", cellCleaning);
+document
+  .querySelector(".cleaning")
+  .addEventListener("click", cellCleaning);
 function cellCleaning() {
   display.value = "";
+}
+
+document
+  .querySelector(".delete-one-item")
+  .addEventListener("click", deleteOneItem);
+function deleteOneItem() {
+  valueDisplay = display.value; 
+  display.value = valueDisplay.substring(0,valueDisplay.length-1);
 }
 
 document
@@ -10,6 +20,7 @@ document
   .forEach((button) => button.addEventListener("click", digitPressed));
 function digitPressed(ev) {
   display.value += ev.target.innerText;
+  return  display.value;
 }
 
 document
@@ -17,6 +28,7 @@ document
   .forEach((button) => button.addEventListener("click", operationPressed));
 function operationPressed(ev) {
   display.value += ev.target.innerText;
+  return  display.value;
 }
 
 const equal = document
