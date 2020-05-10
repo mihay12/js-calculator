@@ -1,26 +1,36 @@
 const display = document.querySelector(".display");
 
-const cleaning = document.querySelector(".cleaning");
-cleaning.addEventListener("click", cellCleaning);
-function cellCleaning(){
-    display.value = "";
+document.querySelector(".cleaning").addEventListener("click", cellCleaning);
+function cellCleaning() {
+  display.value = "";
 }
 
-const digits = document.querySelectorAll(".digits button");
-digits.forEach(button => button.addEventListener("click", digitPressed));
-function digitPressed(ev){
-    display.value += ev.target.innerText;
+document
+  .querySelectorAll(".digits button")
+  .forEach((button) => button.addEventListener("click", digitPressed));
+function digitPressed(ev) {
+  display.value += ev.target.innerText;
 }
 
-const operations = document.querySelectorAll(".operations button");
-operations.forEach(button => button.addEventListener("click", operationPressed));
-function operationPressed(ev){  
-    display.value += ev.target.innerText; 
+document
+  .querySelectorAll(".operations button")
+  .forEach((button) => button.addEventListener("click", operationPressed));
+function operationPressed(ev) {
+  display.value += ev.target.innerText;
 }
 
-document.querySelector(".equal").addEventListener("click", calculated);
+const equal = document
+  .querySelector(".equal")
+  .addEventListener("click", calculated);
 
-function calculated(){
-    display.value = eval(display.value);
+function calculated() {
+  display.value = eval(display.value);
 }
 
+display.addEventListener("keypress", inputKeyPress);
+
+function inputKeyPress(event) {
+  if (event.keyCode === 13) {
+    calculated();
+  }
+}
