@@ -29,7 +29,6 @@ document
 function operationPressed(ev) {
   const string = display.value;
   const lastSymbol = string.slice(-1);
-  console.log(lastSymbol);
   if(lastSymbol === "+" || lastSymbol === "-" || lastSymbol === "*" || lastSymbol === "/"){
     display.value = string.substring(0, string.length - 1);
     display.value += ev.target.innerText;
@@ -44,6 +43,10 @@ const equal = document
 
 function calculated() {
   display.value = eval(display.value);
+  if(eval(display.value) === Infinity || eval(display.value) === (-Infinity)){
+    alert("На нуль ділити не можна");
+    cellCleaning();
+  }
 }
 
 display.addEventListener("keypress", inputKeyPress);
